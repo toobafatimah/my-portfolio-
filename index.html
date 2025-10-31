@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tooba Fatima – Graphic Designer & Content Writer</title>
+    <meta name="theme-color" content="#ec4899" />
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"%3E%3Cdefs%3E%3ClinearGradient id="g" x1="0" x2="1" y1="0" y2="1"%3E%3Cstop offset="0%25" stop-color="%23ec4899"/%3E%3Cstop offset="100%25" stop-color="%23a855f7"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect rx="16" ry="16" x="4" y="4" width="56" height="56" fill="url(%23g)"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-size="30" font-family="Arial, Helvetica, sans-serif" fill="white"%3ET%3C/text%3E%3C/svg%3E' />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Early theme boot (prevents flash) -->
+    <script>
+      (function() {
+        try {
+          const stored = localStorage.getItem('theme');
+          const dark = stored ? stored === 'dark' : true; // default to dark on first visit
+          document.documentElement.classList.toggle('dark', dark);
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', dark ? '#0b0b0f' : '#ec4899');
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              pastelPink: '#FFDDE2',
+              mintGreen: '#D6F5E3',
+              lightPeach: '#FFEED6',
+              pastelBlue: '#DDEBFF',
+              charcoal: '#333333'
+            },
+            fontFamily: {
+              sans: ['Poppins', 'ui-sans-serif', 'system-ui'],
+              serif: ['Poppins', 'ui-serif']
+            },
+            boxShadow: {
+              soft: '0 10px 25px -10px rgba(0,0,0,0.08)'
+            },
+            borderRadius: {
+              soft: '18px'
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+      /* Hide scrollbars on some elements for a cleaner look */
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      #preloader { opacity: 1; transition: opacity .4s ease; }
+      /* Prevent horizontal scroll globally */
+      html, body { max-width: 100%; overflow-x: hidden; }
+
+      /* Dark theme overrides */
+      .dark body { background-color: #0b0b0f; color: #e5e7eb; }
+      .dark .text-charcoal { color: #e5e7eb; }
+      .dark .text-charcoal\/80 { color: rgba(229,231,235,0.8); }
+      .dark .text-charcoal\/70 { color: rgba(229,231,235,0.7); }
+      .dark .text-charcoal\/60 { color: rgba(229,231,235,0.6); }
+      .dark a.hover\:text-black:hover { color: #ffffff; }
+      .dark .bg-white { background-color: #12131a !important; }
+      .dark .bg-white\/80 { background-color: rgba(18,19,26,0.8) !important; }
+      /* Portfolio description readability */
+      .p-desc p { margin: 0; font-size: 0.98rem; line-height: 1.45; font-weight: 500; color: #1f2937; }
+      .dark .p-desc p { color: rgba(255,255,255,0.9); }
+      .dark .bg-white\/90 { background-color: rgba(18,19,26,0.9) !important; }
+      .dark .bg-white\/60 { background-color: rgba(18,19,26,0.6) !important; }
+      .dark .hover\:bg-white:hover { background-color: #151723 !important; }
+      .dark .border-black\/10 { border-color: rgba(255,255,255,0.12) !important; }
+      .dark .ring-black\/10 { --tw-ring-color: rgba(255,255,255,0.12) !important; }
+      .dark header .bg-white\/80 { background-color: rgba(18,19,26,0.7) !important; }
+      .dark #mobileMenu > .absolute:first-child { background-color: rgba(0,0,0,0.5) !important; }
+      .dark #preloader { background: #0b0b0f; }
+      .dark .bg-\[\#fafbff\] { background-color: #0f1117 !important; }
+      .dark .bg-white\/60 { background-color: rgba(18,19,26,0.6) !important; }
+      .dark .from-white { --tw-gradient-from: #0b0b0f var(--tw-gradient-from-position); --tw-gradient-to: rgb(11 11 15 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+      .dark .via-lightPeach\/40 { --tw-gradient-stops: var(--tw-gradient-from), rgba(255,238,214,0.08), var(--tw-gradient-to); }
+      .dark .to-white { --tw-gradient-to: #0b0b0f var(--tw-gradient-to-position); }
+      .dark .shadow-soft { box-shadow: 0 10px 25px -12px rgba(0,0,0,0.5); }
+      /* Inputs, buttons general */
+      .dark .hover\:bg-white\/90:hover { background-color: rgba(21,23,35,0.9) !important; }
+      .dark .hover\:bg-white:hover { background-color: #151723 !important; }
+
+      /* Theme switch knobs: force white in dark mode */
+      .dark #themeKnob,
+      .dark #themeKnobMobile { background-color: #ffffff !important; }
+      /* Position safety in case JS hasn't run yet */
+      .dark #themeKnob { left: auto; right: 0.25rem; }
+      .dark #themeKnobMobile { left: auto; right: 0.25rem; }
+      /* Theme switch borders in dark mode */
+      .dark #themeToggle,
+      .dark #themeToggleMobile { border: 1px solid rgba(255,255,255,0.55) !important; }
+      .dark #themeKnob,
+      .dark #themeKnobMobile { border: 1px solid rgba(255,255,255,0.75) !important; }
+    </style>
+  </head>
+  <body class="font-sans text-charcoal bg-white selection:bg-pastelPink/60 selection:text-charcoal">
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-white flex items-center justify-center">
+      <div class="flex flex-col items-center gap-3">
+        <div class="h-12 w-12 rounded-full border-4 border-pink-200 border-t-pink-500 animate-spin"></div>
+        <p class="text-sm text-charcoal/70">Loading...</p>
+      </div>
+    </div>
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-50 transition-all">
+      <div id="navBar" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between rounded-full mt-3 bg-white/80 backdrop-blur px-4 shadow-soft">
+          <!-- Left: Logo -->
+          <a href="#home" class="flex items-center gap-2">
+            <div class="h-8 w-8 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-rose-400 text-white flex items-center justify-center text-sm font-bold">T</div>
+            <span class="text-base md:text-lg font-semibold tracking-tight">Tooba Portfolio</span>
+          </a>
+          <!-- Center: Nav -->
+          <nav class="hidden lg:block">
+            <ul class="flex items-center gap-6 text-sm font-medium">
+              <li><a class="text-black/80 dark:text-white/90 hover:text-black dark:hover:text-white" href="#home">Home</a></li>
+              <li><a class="text-black/80 dark:text-white/90 hover:text-black dark:hover:text-white" href="#about">About</a></li>
+              <li><a class="text-black/80 dark:text-white/90 hover:text-black dark:hover:text-white" href="#skills">Skills</a></li>
+               <li><a class="text-black/80 dark:text-white/90 hover:text-black dark:hover:text-white" href="#services">Services</a></li>
+              <li><a class="text-black/80 dark:text-white/90 hover:text-black dark:hover:text-white" href="#portfolio">Portfolio</a></li>
+              <li><a class="text-black/80 dark:text-white/90 hover:text-black dark:hover:text-white" href="#experience">Experience</a></li>
+              <li><a class="text-black/80 dark:text-white/90 hover:text-black dark:hover:text-white" href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+          <!-- Right: CTA + Theme Toggle -->
+          <div class="flex items-center gap-2">
+            <button id="themeToggle" role="switch" aria-checked="false" aria-label="Toggle theme"
+              class="hidden lg:inline-flex items-center relative w-14 h-8 rounded-full bg-white ring-1 ring-black/10 shadow-soft hover:bg-white/90 transition">
+              <span class="absolute left-1.5 text-amber-400 text-sm select-none" aria-hidden="true">☀️</span>
+              <span class="absolute right-1.5 text-slate-400 text-sm select-none" aria-hidden="true">🌙</span>
+              <span id="themeKnob" class="absolute top-1 left-1 h-6 w-6 rounded-full bg-white ring-1 ring-black/10 shadow-soft transition-all"></span>
+            </button>
+            <a href="#contact" class="hidden lg:inline-flex items-center rounded-full bg-pink-500 text-white px-4 py-2 text-sm font-medium hover:bg-pink-600 transition">Hire Me</a>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile: Hamburger Button -->
+      <button id="mobileMenuBtn" aria-label="Open menu" class="lg:hidden absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 ring-1 ring-black/10 shadow-soft">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-charcoal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <!-- Mobile Menu Panel -->
+      <div id="mobileMenu" class="lg:hidden fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-white/70 backdrop-blur"></div>
+        <div class="absolute left-4 right-4 top-20">
+          <div class="rounded-[24px] p-[1.5px] bg-gradient-to-br from-pink-500 via-fuchsia-500 to-rose-400 shadow-soft">
+            <nav class="rounded-[22px] bg-white dark:bg-[#12131a] border border-black/10 p-4 relative">
+              <button id="mobileCloseBtn" aria-label="Close menu" class="absolute -top-3 -right-3 h-9 w-9 rounded-full bg-white ring-1 ring-black/10 shadow-soft flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-charcoal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6l-12 12"/></svg>
+              </button>
+              <!-- Mobile Theme Toggle -->
+              <div class="flex items-center justify-between mb-3 px-1">
+                <span class="text-sm font-medium text-charcoal dark:text-white/90">Theme</span>
+                <button id="themeToggleMobile" role="switch" aria-checked="false" aria-label="Toggle theme"
+                  class="inline-flex items-center relative w-14 h-8 rounded-full bg-white ring-1 ring-black/10 shadow-soft hover:bg-white/90 transition">
+                  <span class="absolute left-1.5 text-amber-400 text-sm select-none" aria-hidden="true">☀️</span>
+                  <span class="absolute right-1.5 text-slate-400 text-sm select-none" aria-hidden="true">🌙</span>
+                  <span id="themeKnobMobile" class="absolute top-1 left-1 h-6 w-6 rounded-full bg-white ring-1 ring-black/10 shadow-soft transition-all"></span>
+                </button>
+              </div>
+              <ul class="flex flex-col gap-1.5 text-sm font-medium">
+                <li>
+                  <a class="group flex items-center justify-between rounded-xl px-4 py-3 text-charcoal dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/5 transition" href="#home">
+                    <span>Home</span>
+                    <svg class="h-4 w-4 opacity-50 group-hover:opacity-100 transition transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center justify-between rounded-xl px-4 py-3 text-charcoal dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/5 transition" href="#about">
+                    <span>About</span>
+                    <svg class="h-4 w-4 opacity-50 group-hover:opacity-100 transition transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center justify-between rounded-xl px-4 py-3 text-charcoal dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/5 transition" href="#skills">
+                    <span>Skills</span>
+                    <svg class="h-4 w-4 opacity-50 group-hover:opacity-100 transition transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center justify-between rounded-xl px-4 py-3 text-charcoal dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/5 transition" href="#services">
+                    <span>Services</span>
+                    <svg class="h-4 w-4 opacity-50 group-hover:opacity-100 transition transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center justify-between rounded-xl px-4 py-3 text-charcoal dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/5 transition" href="#portfolio">
+                    <span>Portfolio</span>
+                    <svg class="h-4 w-4 opacity-50 group-hover:opacity-100 transition transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center justify-between rounded-xl px-4 py-3 text-charcoal dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/5 transition" href="#experience">
+                    <span>Experience</span>
+                    <svg class="h-4 w-4 opacity-50 group-hover:opacity-100 transition transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+                <li>
+                  <a class="group flex items-center justify-between rounded-xl px-4 py-3 text-charcoal dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/5 transition" href="#contact">
+                    <span>Contact</span>
+                    <svg class="h-4 w-4 opacity-50 group-hover:opacity-100 transition transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="relative overflow-hidden">
+      <div class="absolute inset-0 -z-10 bg-gradient-to-br from-white via-pastelBlue/40 to-lightPeach/50"></div>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <!-- Left: Text -->
+          <div>
+            <p class="text-sm font-medium mb-3 flex items-center gap-2 text-pink-600">
+              <span>✨</span> Welcome to my portfolio
+            </p>
+            <h1 class="text-4xl md:text-6xl font-serif font-semibold leading-tight mb-4">
+              Hello, I'm <span class="text-pink-600">Tooba</span>
+              <span class="text-pink-600 block md:inline">Fatima</span>
+            </h1>
+            <p class="text-xl md:text-2xl font-medium mb-4">
+              Professional <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 via-fuchsia-500 to-amber-400">Graphic Designer</span> &
+              <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-500">Content Writer</span>
+            </p>
+            <p class="text-charcoal/80 mb-6 max-w-2xl">
+              I combine analytical thinking with creativity to solve problems, communicate ideas, and help brands grow. Whether it's simplifying complex topics or crafting compelling content, I bring clarity, impact, and value to every project.
+            </p>
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-pink-500 text-white px-6 py-3 text-sm font-medium hover:bg-pink-600 transition">
+                Hire Me Now
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#about" class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium border border-black/5 shadow-soft hover:bg-white/90 transition">Learn More</a>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="#" class="h-10 w-10 rounded-full bg-white border border-black/5 shadow-soft flex items-center justify-center text-pink-500"></a>
+              <a href="#" class="h-10 w-10 rounded-full bg-white border border-black/5 shadow-soft flex items-center justify-center text-sky-500"></a>
+              <a href="#" class="h-10 w-10 rounded-full bg-white border border-black/5 shadow-soft flex items-center justify-center text-blue-600">in</a>
+              <a href="#" class="h-10 w-10 rounded-full bg-white border border-black/5 shadow-soft flex items-center justify-center text-purple-500"></a>
+            </div>
+          </div>
+          <!-- Right: Image with pastel frame -->
+          <div class="relative">
+            <div class="relative rounded-[32px] p-3 bg-gradient-to-br from-pastelBlue via-pastelPink to-mintGreen">
+              <div class="rounded-[24px] bg-white overflow-hidden h-64 md:h-80 lg:h-96">
+                <img src="assets/DOODLE.jpg" alt="Portrait" class="h-full w-full object-cover" />
+              </div>
+            </div>
+            <!-- Floating badges -->
+            <button class="absolute -top-4 left-1/2 -translate-x-1/2 h-10 w-10 rounded-full bg-amber-400 shadow-soft border border-black/5">🎨</button>
+            <button class="absolute -bottom-4 right-4 h-12 w-12 rounded-full bg-pink-500 text-white shadow-soft border border-black/5">🎨</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 bg-[#fafbff]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-8 items-start">
+          <!-- Left: Intro and metrics -->
+          <div>
+            <h2 class="text-3xl md:text-4xl font-serif font-semibold mb-4">About <span class="text-pink-600">Me</span></h2>
+            <p class="text-charcoal/80 leading-relaxed mb-4">
+              I’m a versatile professional with a background in Applied Physics, Content Writing, Digital Marketing, and Teaching. I combine analytical thinking with creativity to solve problems, communicate ideas, and help brands grow.
+            </p>
+            <p class="text-charcoal/80 leading-relaxed mb-6">
+              Whether it’s simplifying complex topics or crafting compelling content, I bring clarity, impact, and value to every project. My blend of technical knowledge and creative skills helps me approach challenges from multiple perspectives.
+            </p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div class="rounded-[18px] bg-white border border-black/5 shadow-soft p-6 text-center">
+                <p class="text-3xl font-semibold text-pink-600">5+</p>
+                <p class="text-xs text-charcoal/60 mt-1">Years Experience</p>
+              </div>
+              <div class="rounded-[18px] bg-white border border-black/5 shadow-soft p-6 text-center">
+                <p class="text-3xl font-semibold text-sky-500">50+</p>
+                <p class="text-xs text-charcoal/60 mt-1">Projects Completed</p>
+              </div>
+            </div>
+          </div>
+          <!-- Right: Cards -->
+          <div class="space-y-4">
+            <div class="rounded-[18px] bg-white border border-black/5 shadow-soft p-6">
+              <div class="flex items-start gap-3 mb-3">
+                <div class="h-10 w-10 rounded-xl bg-pastelPink/70 flex items-center justify-center">🎓</div>
+                <h3 class="font-semibold">Education</h3>
+              </div>
+              <div class="space-y-4 text-sm">
+                <div>
+                  <p class="font-medium">Masters of Applied Physics</p>
+                  <p class="text-charcoal/60">Karachi University • 2025</p>
+                </div>
+                <div>
+                  <p class="font-medium">Bachelor of Applied Physics</p>
+                  <p class="text-charcoal/60">Karachi University • 2024</p>
+                </div>
+              </div>
+            </div>
+            <div class="rounded-[18px] bg-white border border-black/5 shadow-soft p-6">
+              <div class="flex items-start gap-3 mb-3">
+                <div class="h-10 w-10 rounded-xl bg-pastelBlue/70 flex items-center justify-center">🏅</div>
+                <h3 class="font-semibold">Certifications</h3>
+              </div>
+              <ul class="list-disc pl-5 text-sm text-charcoal/80 space-y-1">
+                <li>Advanced English Language Course</li>
+                <li>Canva Designer & Expertise</li>
+                <li>Digital Marketing & Freelancing</li>
+                <li>Graphic Designing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 bg-[#fafbff]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-extrabold">My <span class="text-pink-600">Skills</span></h2>
+          <p class="mt-3 text-sm md:text-base text-charcoal/70">Professional expertise across multiple tools and platforms</p>
+        </div>
+        <div class="rounded-[22px] bg-white p-6 md:p-8 shadow-soft border border-black/10">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
+            <!-- Item 1 -->
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1"><span>Content Writing</span><span class="text-pink-600">95%</span></div>
+              <div class="h-2.5 rounded-full bg-gray-200 relative overflow-hidden">
+                <div class="skill-bar absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 w-0" data-target="95"></div>
+              </div>
+            </div>
+            <!-- Item 2 -->
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1"><span>SEO & Digital Marketing</span><span class="text-pink-600">90%</span></div>
+              <div class="h-2.5 rounded-full bg-gray-200 relative overflow-hidden">
+                <div class="skill-bar absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 w-0" data-target="90"></div>
+              </div>
+            </div>
+            <!-- Item 3 -->
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1"><span>Adobe Illustrator</span><span class="text-pink-600">85%</span></div>
+              <div class="h-2.5 rounded-full bg-gray-200 relative overflow-hidden">
+                <div class="skill-bar absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 w-0" data-target="85"></div>
+              </div>
+            </div>
+            <!-- Item 4 -->
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1"><span>Adobe Photoshop</span><span class="text-pink-600">85%</span></div>
+              <div class="h-2.5 rounded-full bg-gray-200 relative overflow-hidden">
+                <div class="skill-bar absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 w-0" data-target="85"></div>
+              </div>
+            </div>
+            <!-- Item 5 -->
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1"><span>Canva Design</span><span class="text-pink-600">95%</span></div>
+              <div class="h-2.5 rounded-full bg-gray-100 relative overflow-hidden">
+                <div class="skill-bar absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 w-0" data-target="95"></div>
+              </div>
+            </div>
+            <!-- Item 6 -->
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1"><span>MS Office Suite</span><span class="text-pink-600">90%</span></div>
+              <div class="h-2.5 rounded-full bg-gray-100 relative overflow-hidden">
+                <div class="skill-bar absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 w-0" data-target="90"></div>
+              </div>
+            </div>
+            <!-- Item 7 -->
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1"><span>English Language</span><span class="text-pink-600">95%</span></div>
+              <div class="h-2.5 rounded-full bg-gray-100 relative overflow-hidden">
+                <div class="skill-bar absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 w-0" data-target="95"></div>
+              </div>
+            </div>
+            <!-- Item 8 -->
+            <div>
+              <div class="flex items-center justify-between text-sm mb-1"><span>Teaching & Communication</span><span class="text-pink-600">90%</span></div>
+              <div class="h-2.5 rounded-full bg-gray-100 relative overflow-hidden">
+                <div class="skill-bar absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-pink-500 via-fuchsia-500 to-violet-500 w-0" data-target="90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-extrabold">
+            I Provide Wide Range Of <span class="text-pink-600">Digital Services</span>
+          </h2>
+          <p class="mt-3 text-sm md:text-base text-charcoal/70 max-w-2xl mx-auto">
+            Combining creativity with technical expertise to deliver exceptional results across multiple disciplines
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Graphic Design -->
+          <div class="service-card rounded-[22px] bg-white p-6 shadow-soft border border-black/10">
+            <div class="h-12 w-12 rounded-xl bg-[#EBD8FF] flex items-center justify-center mb-4">
+              <svg class="h-6 w-6 text-fuchsia-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6l-2 4-4 2 4 2 2 4 2-4 4-2-4-2-2-4z"/></svg>
+            </div>
+            <h3 class="font-semibold mb-1">Graphic Design</h3>
+            <p class="text-sm text-charcoal/70">Expert in Adobe Illustrator, Photoshop, and Canva. Creating visually stunning designs that capture attention and communicate your brand effectively.</p>
+          </div>
+          <!-- Content Writing -->
+          <div class="service-card rounded-[22px] bg-white p-6 shadow-soft border border-black/10">
+            <div class="h-12 w-12 rounded-xl bg-[#CFFAFE] flex items-center justify-center mb-4">
+              <svg class="h-6 w-6 text-cyan-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 6h14M5 18h7"/></svg>
+            </div>
+            <h3 class="font-semibold mb-1">Content Writing</h3>
+            <p class="text-sm text-charcoal/70">Professional content writing, SEO optimization, and ghostwriting services. Crafting compelling narratives that engage readers and drive results.</p>
+          </div>
+          <!-- Digital Marketing -->
+          <div class="service-card rounded-[22px] bg-white p-6 shadow-soft border border-black/10">
+            <div class="h-12 w-12 rounded-xl bg-[#FEF3C7] flex items-center justify-center mb-4">
+              <svg class="h-6 w-6 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </div>
+            <h3 class="font-semibold mb-1">Digital Marketing</h3>
+            <p class="text-sm text-charcoal/70">Strategic campaigns to increase brand visibility and engagement. SEO specialist with a proven track record of success.</p>
+          </div>
+          <!-- Teaching & Training -->
+          <div class="service-card rounded-[22px] bg-white p-6 shadow-soft border border-black/10">
+            <div class="h-12 w-12 rounded-xl bg-[#FFE0F0] flex items-center justify-center mb-4">
+              <svg class="h-6 w-6 text-pink-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0v6"/></svg>
+            </div>
+            <h3 class="font-semibold mb-1">Teaching & Training</h3>
+            <p class="text-sm text-charcoal/70">Experienced educator teaching grades 4–10. Skilled at engaging students effectively and making complex topics easy to understand.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="py-20 bg-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-extrabold">My <span class="text-pink-600">Portfolio</span></h2>
+          <p class="mt-3 text-sm md:text-base text-charcoal/70">Selected works across design and content</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Items -->
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/Brown and White Doodle Creative Kids Workshop Brochure (1).jpg" alt="Brown and White Doodle Creative Kids Workshop Brochure" />
+            <div class="absolute inset-0 bg-gradient-to-t from-pastelPink/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-pink-600 text-xs ring-1 ring-black/5 shadow-soft">Brochure . UI</div>
+            </div>
+          </a>
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/Business Content (1).jpg" alt="Business Content" />
+            <div class="absolute inset-0 bg-gradient-to-t from-mintGreen/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-emerald-600 text-xs ring-1 ring-black/5 shadow-soft">Media Campaign 
+</div>
+            </div>
+          </a>
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/Orange Blue Bold English Procedural  Writing Presentation _page-0001.jpg" alt="Orange Blue Bold English Procedural Writing Presentation" />
+            <div class="absolute inset-0 bg-gradient-to-t from-lightPeach/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-amber-600 text-xs ring-1 ring-black/5 shadow-soft">Post
+</div>
+            </div>
+          </a>
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/Purple and White Aesthetic Elegant Writing Club Logo.jpg" alt="Aesthetic Elegant Writing Club Logo" />
+            <div class="absolute inset-0 bg-gradient-to-t from-pastelPink/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-pink-600 text-xs ring-1 ring-black/5 shadow-soft">Logo design 
+</div>
+            </div>
+          </a>
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/BROCHURE.jpg" alt="Brochure" />
+            <div class="absolute inset-0 bg-gradient-to-t from-mintGreen/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-emerald-600 text-xs ring-1 ring-black/5 shadow-soft">Brochure
+ . UI</div>
+            </div>
+          </a>
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/MOVIE-POSTER.jpg" alt="Movie Poster" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-lightPeach/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-amber-600 text-xs ring-1 ring-black/5 shadow-soft">Movie poster
+</div>
+            </div>
+          </a>
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white" data-type="pdf" data-src="assets/Green Grey Scrapbook Digital Marketing Presentation (1)_compressed.pdf" data-title="Digital Marketing Presentation">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/inkfluence.png" alt="Digital Marketing Presentation Cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-pastelPink/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-pink-600 text-xs ring-1 ring-black/5 shadow-soft">Campaign presentation 
+</div>
+            </div>
+          </a>
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white" data-type="pdf" data-src="assets/Colorful Illustrative Food Journal Presentation (2).pdf" data-title="Food Journal Presentation">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/dunk and dine.png" alt="Dunk and Dine Cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-mintGreen/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-emerald-600 text-xs ring-1 ring-black/5 shadow-soft">Marketing presentation 
+</div>
+            </div>
+          </a>
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white" data-type="pdf" data-src="assets/Creative (1).pdf" data-title="Creative Presentation">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/brand audit report.png" alt="Brand Audit Report Cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-lightPeach/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-amber-600 text-xs ring-1 ring-black/5 shadow-soft">Audit report presentation 
+</div>
+            </div>
+          </a>
+          <!-- New: #1 in fitness -->
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/%231%20%C4%B1n%20f%C4%B1tness.jpg" alt="#1 in fitness" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-pastelPink/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-pink-600 text-xs ring-1 ring-black/5 shadow-soft">Fitness • Poster</div>
+            </div>
+          </a>
+          <!-- New: Untitled design (2) -->
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/Untitled%20design%20(2).jpg" alt="Untitled design (2)" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-mintGreen/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-emerald-600 text-xs ring-1 ring-black/5 shadow-soft">Business card
+</div>
+            </div>
+          </a>
+          <!-- New: this week’s Special -->
+          <a href="#" class="portfolio-item group relative overflow-hidden rounded-[22px] border border-black/10 shadow-soft bg-white">
+            <img class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" src="assets/this%20week%E2%80%99s%20Special.jpg" alt="This Week’s Special" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-lightPeach/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition"></div>
+            <div class="absolute inset-x-0 bottom-0 p-4 md:p-5">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 text-amber-600 text-xs ring-1 ring-black/5 shadow-soft">Social media post</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!-- Work Experience -->
+    <section id="experience" class="py-20 bg-[#fafbff]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-extrabold">Work <span class="text-pink-600">Experience</span></h2>
+          <p class="mt-3 text-sm md:text-base text-charcoal/70 max-w-2xl mx-auto">A journey of diverse roles combining education, content creation, and digital marketing</p>
+        </div>
+        <div class="space-y-5">
+          <!-- Card 1 -->
+          <div class="exp-item rounded-[18px] bg-white p-5 md:p-6 shadow-soft border border-black/10 flex items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-pink-100 flex items-center justify-center text-pink-600">🎒</div>
+              <div>
+                <h3 class="font-semibold">School Teacher</h3>
+                <a class="text-sm text-pink-600 hover:underline" href="#" target="_blank">KCS Campus II</a>
+                <p class="mt-1 text-sm text-charcoal/70">Teaching grades 4 to 10 with major subjects including science and social studies. Engaging students effectively to promote active learning.</p>
+              </div>
+            </div>
+            <div class="text-xs text-charcoal/60 whitespace-nowrap">2024–2025</div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="exp-item rounded-[18px] bg-white p-5 md:p-6 shadow-soft border border-black/10 flex items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-cyan-100 flex items-center justify-center text-cyan-600">💼</div>
+              <div>
+                <h3 class="font-semibold">Sales Agent & Web Handler</h3>
+                <a class="text-sm text-pink-600 hover:underline" href="#" target="_blank">DigiKnown – Qatar Branch</a>
+                <p class="mt-1 text-sm text-charcoal/70">Working remotely, promoting digital services and products through online platforms to increase brand visibility and client engagement.</p>
+              </div>
+            </div>
+            <div class="text-xs text-charcoal/60 whitespace-nowrap">2024</div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="exp-item rounded-[18px] bg-white p-5 md:p-6 shadow-soft border border-black/10 flex items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-amber-100 flex items-center justify-center text-amber-600">✍️</div>
+              <div>
+                <h3 class="font-semibold">Content Writer</h3>
+                <a class="text-sm text-pink-600 hover:underline" href="#" target="_blank">Solo Clients (Fiverr & Upwork)</a>
+                <p class="mt-1 text-sm text-charcoal/70">Working on solo projects, handling and managing multiple clients efficiently from remote location. Specialized in content writing and SEO.</p>
+              </div>
+            </div>
+            <div class="text-xs text-charcoal/60 whitespace-nowrap">2018–Present</div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="exp-item rounded-[18px] bg-white p-5 md:p-6 shadow-soft border border-black/10 flex items-start justify-between gap-6">
+            <div class="flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-gray-200 flex items-center justify-center text-gray-700">📚</div>
+              <div>
+                <h3 class="font-semibold">Writer Assistant</h3>
+                <a class="text-sm text-pink-600 hover:underline" href="#" target="_blank">Online Writing Team</a>
+                <p class="mt-1 text-sm text-charcoal/70">Children story writing and ghost writing. Content writing and SEO Marketing as an assistant with a professional writing team.</p>
+              </div>
+            </div>
+            <div class="text-xs text-charcoal/60 whitespace-nowrap">2019</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials (optional) -->
+    <section id="testimonials" class="py-20 bg-gradient-to-br from-white via-lightPeach/40 to-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between mb-10">
+          <h2 class="text-3xl font-serif font-semibold">Testimonials</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="rounded-[22px] bg-white p-6 shadow-soft border border-black/5">
+            <div class="flex items-center gap-3 mb-4">
+              <img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Client" />
+              <div>
+                <p class="font-semibold">Ayesha Khan</p>
+                <p class="text-xs text-charcoal/60">Brand Manager</p>
+              </div>
+            </div>
+            <p class="text-sm text-charcoal/80">“Beautiful work and a pleasure to collaborate with. Our brand feels more welcoming and unified.”</p>
+          </div>
+          <div class="rounded-[22px] bg-white p-6 shadow-soft border border-black/5">
+            <div class="flex items-center gap-3 mb-4">
+              <img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop" alt="Client" />
+              <div>
+                <p class="font-semibold">Daniel Green</p>
+                <p class="text-xs text-charcoal/60">Startup Founder</p>
+              </div>
+            </div>
+            <p class="text-sm text-charcoal/80">“Clean design and clear messaging. Exactly what we needed for launch.”</p>
+          </div>
+          <div class="rounded-[22px] bg-white p-6 shadow-soft border border-black/5">
+            <div class="flex items-center gap-3 mb-4">
+              <img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1541534401786-2077eed87a72?q=80&w=400&auto=format&fit=crop" alt="Client" />
+              <div>
+                <p class="font-semibold">Sara Ahmed</p>
+                <p class="text-xs text-charcoal/60">Marketing Lead</p>
+              </div>
+            </div>
+            <p class="text-sm text-charcoal/80">“Pastel palette and visuals are on point. Copy reads naturally and on-brand.”</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-[#fafbff]">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-extrabold">Get In <span class="text-pink-600">Touch</span></h2>
+          <p class="mt-3 text-sm md:text-base text-charcoal/70">Let's work together on your next project. Feel free to reach out!</p>
+        </div>
+
+        <!-- Info cards -->
+        <div class="grid md:grid-cols-3 gap-6 mb-10">
+          <!-- Email -->
+          <div class="rounded-[24px] p-[2px] bg-gradient-to-br from-pink-500 via-fuchsia-500 to-rose-400 shadow-soft overflow-hidden">
+            <div class="rounded-[24px] bg-white/90 dark:bg-[#12131a]/90 backdrop-blur-md p-6 md:p-7 ring-1 ring-black/5 dark:ring-white/10 flex items-start gap-4 transition-all duration-300 hover:translate-y-[-3px] hover:shadow-[0_14px_28px_-14px_rgba(0,0,0,0.4)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+              <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-pastelPink via-pastelBlue to-mintGreen flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-pink-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16v12H4z"/><path stroke-linecap="round" stroke-linejoin="round" d="M22 7l-10 7L2 7"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-black/90 dark:text-white">Email</p>
+                <p class="text-sm text-black/60 dark:text-white/70 mt-0.5">
+                  <a href="mailto:fatimantoobal@gmail.com" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-50/90 dark:bg-white/10 text-pink-600 dark:text-white hover:bg-pink-100/90 dark:hover:bg-white/15 transition">
+                    fatimantoobal@gmail.com
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Phone -->
+          <div class="rounded-[24px] p-[2px] bg-gradient-to-br from-emerald-400 via-cyan-500 to-sky-500 shadow-soft overflow-hidden">
+            <div class="rounded-[24px] bg-white/90 dark:bg-[#12131a]/90 backdrop-blur-md p-6 md:p-7 ring-1 ring-black/5 dark:ring-white/10 flex items-start gap-4 transition-all duration-300 hover:translate-y-[-3px] hover:shadow-[0_14px_28px_-14px_rgba(0,0,0,0.4)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+              <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-pastelBlue via-mintGreen to-lightPeach flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-cyan-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.89.3 1.76.54 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.48-1.06a2 2 0 0 1 2.11-.45c.84.24 1.71.42 2.6.54A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-black/90 dark:text-white">Phone</p>
+                <p class="text-sm text-black/60 dark:text-white/70 mt-0.5">
+                  <a href="tel:03352214457" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-sky-50/90 dark:bg-white/10 text-sky-700 dark:text-white hover:bg-sky-100/90 dark:hover:bg-white/15 transition">
+                    03352214457
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- LinkedIn -->
+          <div class="rounded-[24px] p-[2px] bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-600 shadow-soft overflow-hidden">
+            <div class="rounded-[24px] bg-white/90 dark:bg-[#12131a]/90 backdrop-blur-md p-6 md:p-7 ring-1 ring-black/5 dark:ring-white/10 flex items-start gap-4 transition-all duration-300 hover:translate-y-[-3px] hover:shadow-[0_14px_28px_-14px_rgba(0,0,0,0.4)] shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+              <div class="h-11 w-11 rounded-xl bg-gradient-to-br from-sky-100 via-blue-100 to-indigo-100 dark:from-white/10 dark:via-white/10 dark:to-white/10 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-blue-600 dark:text-blue-400"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.1c.5-1 1.8-2.1 3.7-2.1 4 0 4.7 2.6 4.7 6V23h-4v-6.4c0-1.5 0-3.5-2.1-3.5s-2.4 1.7-2.4 3.4V23h-4V8.5z"/></svg>
+              </div>
+              <div>
+                <p class="font-semibold text-black/90 dark:text-white">LinkedIn</p>
+                <p class="text-sm text-black/60 dark:text-white/70 mt-0.5">
+                  <a href="https://www.linkedin.com/in/tooba-fatimah-984717369" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50/90 dark:bg-white/10 text-blue-700 dark:text-white hover:bg-blue-100/90 dark:hover:bg-white/15 transition">
+                    Tooba Fatimah
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative overflow-hidden pt-14 pb-10 bg-gradient-to-b from-white via-pastelPink/20 to-lightPeach/30 border-t border-black/10">
+      <div class="pointer-events-none absolute -top-10 right-10 h-40 w-40 rounded-full bg-pastelPink blur-3xl opacity-50"></div>
+      <div class="pointer-events-none absolute -bottom-10 left-10 h-40 w-40 rounded-full bg-pastelBlue blur-3xl opacity-50"></div>
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-center text-center">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="h-9 w-9 rounded-full bg-gradient-to-br from-pink-500 via-fuchsia-500 to-rose-400 text-white flex items-center justify-center text-sm font-bold shadow-soft">T</div>
+            <span class="text-sm md:text-base font-semibold tracking-tight">Tooba Fatima</span>
+          </div>
+
+          <div class="social flex items-center justify-center gap-3 mb-5">
+            <a href="#" aria-label="Facebook" class="h-10 w-10 rounded-full bg-white ring-1 ring-black/10 shadow-soft flex items-center justify-center transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-pink-600"><path d="M13 10h3V7h-3V5.5A1.5 1.5 0 0 1 14.5 4H16V1h-1.5A4.5 4.5 0 0 0 10 5.5V7H8v3h2v10h3V10z"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter" class="h-10 w-10 rounded-full bg-white ring-1 ring-black/10 shadow-soft flex items-center justify-center transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-sky-500"><path d="M22 5.8c-.7.3-1.4.5-2.2.6.8-.5 1.3-1.2 1.6-2.1-.7.4-1.6.8-2.5 1A3.7 3.7 0 0 0 12.1 8c0 .3 0 .6.1.9A10.5 10.5 0 0 1 3 5.2a3.7 3.7 0 0 0 1.1 5 3.7 3.7 0 0 1-1.7-.5v.1a3.7 3.7 0 0 0 3 3.6 3.7 3.7 0 0 1-1.7.1 3.7 3.7 0 0 0 3.5 2.6A7.5 7.5 0 0 1 2 18.6a10.6 10.6 0 0 0 5.7 1.7c6.8 0 10.5-5.7 10.5-10.5v-.5c.7-.5 1.3-1.1 1.8-1.8z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/tooba-fatimah-984717369" target="_blank" rel="noopener" aria-label="LinkedIn" class="h-10 w-10 rounded-full bg-white ring-1 ring-black/10 shadow-soft flex items-center justify-center transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-amber-500"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8.5 8.5h3.8v2h.1c.5-1 1.8-2.1 3.7-2.1 4 0 4.7 2.6 4.7 6V23h-4v-6.4c0-1.5 0-3.5-2.1-3.5s-2.4 1.7-2.4 3.4V23h-4V8.5z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram" class="h-10 w-10 rounded-full bg-white ring-1 ring-black/10 shadow-soft flex items-center justify-center transition">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5 text-violet-500"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.75-3.25a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/></svg>
+            </a>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-center gap-2 text-xs md:text-sm text-charcoal/70 mb-4">
+            <a href="#home" class="px-3 py-1.5 rounded-full bg-white/60 hover:bg-white transition ring-1 ring-black/5">Home</a>
+            <a href="#about" class="px-3 py-1.5 rounded-full bg-white/60 hover:bg-white transition ring-1 ring-black/5">About</a>
+            <a href="#services" class="px-3 py-1.5 rounded-full bg-white/60 hover:bg-white transition ring-1 ring-black/5">Services</a>
+            <a href="#skills" class="px-3 py-1.5 rounded-full bg-white/60 hover:bg-white transition ring-1 ring-black/5">Skills</a>
+            <a href="#experience" class="px-3 py-1.5 rounded-full bg-white/60 hover:bg-white transition ring-1 ring-black/5">Experience</a>
+            <a href="#contact" class="px-3 py-1.5 rounded-full bg-white/60 hover:bg-white transition ring-1 ring-black/5">Contact</a>
+          </div>
+
+          <p class="text-xs md:text-[13px] text-charcoal/60">© <span id="year"></span> Tooba Fatima. All rights reserved by chutkala & chutkala son.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- App JS -->
+    <script src="./script.js"></script>
+    
+    <!-- Back to Top Button -->
+    <button id="backToTop" aria-label="Back to top" class="fixed bottom-5 right-5 z-40 h-12 w-12 rounded-full bg-pink-500 text-white shadow-soft border border-black/5 hidden items-center justify-center">
+      ↑
+    </button>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[70] hidden">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+      <button id="lightboxClose" aria-label="Close" class="absolute top-5 right-5 h-10 w-10 rounded-full bg-white/90 text-charcoal ring-1 ring-black/10 shadow-soft flex items-center justify-center hover:bg-white transition">✕</button>
+      <img id="lightboxImg" src="" alt="Preview" class="absolute inset-0 m-auto max-w-[90vw] max-h-[85vh] rounded-[18px] shadow-soft border border-white/10" />
+    </div>
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="fixed inset-0 z-[90] hidden">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm z-[10]"></div>
+      <div id="pdfPanel" class="absolute inset-0 m-auto max-w-[96vw] max-h-[90vh] w-[1100px] h-[80vh] rounded-[22px] bg-white dark:bg-[#12131a] ring-1 ring-black/10 dark:ring-white/10 shadow-soft overflow-hidden flex flex-col z-[20]">
+        <div class="relative z-[30] flex items-center justify-between px-4 py-3 border-b border-black/10 dark:border-white/10 pointer-events-auto">
+          <h3 id="pdfTitle" class="text-sm md:text-base font-semibold text-black/80 dark:text-white"></h3>
+          <button id="pdfClose" aria-label="Close" class="h-9 w-9 rounded-full bg-white/90 dark:bg-[#151723] text-charcoal ring-1 ring-black/10 shadow-soft flex items-center justify-center relative z-[100] pointer-events-auto">✕</button>
+        </div>
+        <div class="relative flex-1 bg-white dark:bg-[#0f1117]">
+          <iframe id="pdfFrame" class="absolute inset-0 w-full h-full z-[15]" src="" title="PDF preview"></iframe>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
